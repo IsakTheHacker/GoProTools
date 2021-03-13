@@ -10,7 +10,7 @@ if (ok.lower() == "yes") or (ok.lower() == "y"):
 
 	pathString = ""
 	for entry in os.scandir(os.path.abspath(os.getcwd())):
-		if entry.is_dir():			#Check if entry is folder and --folder arg is not specified. Continue if
+		if entry.is_dir():
 			continue
 
 		if entry.is_file() and (entry.name.lower().endswith(".thm") or entry.name.lower().endswith(".lrv")):
