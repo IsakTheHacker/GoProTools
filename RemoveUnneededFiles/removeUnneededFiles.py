@@ -2,7 +2,15 @@
 import os
 import getpass
 
-print("Will remove all LRV and THM files from \"{}\", is this OK?".format(os.path.abspath(os.getcwd())))
+import colorama
+from colorama import Fore
+colorama.init()
+
+print("Will remove all {}LRV{} and {}THM{} files from {}\"{}\"{}, is this OK?".format(
+	Fore.CYAN, Fore.RESET,
+	Fore.CYAN, Fore.RESET,
+	Fore.GREEN, os.path.abspath(os.getcwd()), Fore.RESET
+))
 
 ok = input("Yes/No: ")
 if (ok.lower() == "yes") or (ok.lower() == "y"):
