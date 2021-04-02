@@ -6,10 +6,40 @@ import colorama
 from colorama import Fore
 colorama.init()
 
+
 def fileRemove():
-	print("Will remove all {}LRV{} and {}THM{} files from {}\"{}\"{}, is this OK?".format(
-		Fore.CYAN, Fore.RESET,
-		Fore.CYAN, Fore.RESET,
+	totalItems = 0
+
+	#Arrays
+	thmFiles = []
+	lrvFiles = []
+
+	for entry in os.scandir(os.path.abspath(os.getcwd())):
+		totalItems += 1
+		if entry.is_dir():
+			continue
+
+		if entry.is_file():
+			if entry.name.lower().endswith(".thm"):
+				thmFiles.append(entry.name)
+			elif entry.name.lower().endswith(".lrv"):
+				lrvFiles.append(entry.name)
+
+	if len(thmFiles):
+		print("{}{}{} thm files:\n{}".format(
+			Fore.BLUE, len(thmFiles), Fore.RESET,
+			"\n".join(thmFiles)
+		))
+	if len(lrvFiles):
+		print("{}{}{} lrv files:\n{}".format(
+			Fore.BLUE, len(lrvFiles), Fore.RESET,
+			"\n".join(lrvFiles)
+		))
+
+	if not (len(thmFiles) or len(lrvFiles)):
+		return True
+
+	print("Will remove the files above from {}\"{}\"{}, is this OK?".format(
 		Fore.GREEN, os.path.abspath(os.getcwd()), Fore.RESET
 	))
 
@@ -30,6 +60,8 @@ def fileRemove():
 		print(pathString)
 	else:
 		print("\nUnnecessary file remove was canceled!")
+
+	return True
 
 if __name__ == "__main__":
 	fileRemove()
