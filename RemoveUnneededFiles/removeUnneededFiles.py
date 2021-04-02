@@ -6,28 +6,32 @@ import colorama
 from colorama import Fore
 colorama.init()
 
-print("Will remove all {}LRV{} and {}THM{} files from {}\"{}\"{}, is this OK?".format(
-	Fore.CYAN, Fore.RESET,
-	Fore.CYAN, Fore.RESET,
-	Fore.GREEN, os.path.abspath(os.getcwd()), Fore.RESET
-))
+def fileRemove():
+	print("Will remove all {}LRV{} and {}THM{} files from {}\"{}\"{}, is this OK?".format(
+		Fore.CYAN, Fore.RESET,
+		Fore.CYAN, Fore.RESET,
+		Fore.GREEN, os.path.abspath(os.getcwd()), Fore.RESET
+	))
 
-ok = input("Yes/No: ")
-if (ok.lower() == "yes") or (ok.lower() == "y"):
-	print("\nRemoving files...")
+	ok = input("Yes/No: ")
+	if (ok.lower() == "yes") or (ok.lower() == "y"):
+		print("\nRemoving files...")
 
-	pathString = ""
-	for entry in os.scandir(os.path.abspath(os.getcwd())):
-		if entry.is_dir():
-			continue
+		pathString = ""
+		for entry in os.scandir(os.path.abspath(os.getcwd())):
+			if entry.is_dir():
+				continue
 
-		if entry.is_file() and (entry.name.lower().endswith(".thm") or entry.name.lower().endswith(".lrv")):
-			pathString += entry.name + "\n"
-			os.remove(entry.path)
+			if entry.is_file() and (entry.name.lower().endswith(".thm") or entry.name.lower().endswith(".lrv")):
+				pathString += entry.name + "\n"
+				os.remove(entry.path)
 
-	print("Removed these files:")
-	print(pathString)
-else:
-	print("\nUnnecessary file remove was canceled!")
+		print("Removed these files:")
+		print(pathString)
+	else:
+		print("\nUnnecessary file remove was canceled!")
+
+if __name__ == "__main__":
+	fileRemove()
 	
 getpass.getpass("Press ENTER to exit...")
