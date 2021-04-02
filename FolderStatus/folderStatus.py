@@ -19,7 +19,7 @@ nonGoProFiles = []
 folders = []
 
 def printStats():
-	print("\nContains {}{}{} useless files, of which {}{}{} are thm files and {}{}{} are drv files.".format(
+	print("\nContains {}{}{} useless files, of which {}{}{} are thm files and {}{}{} are lrv files.".format(
 		Fore.BLUE, len(thmFiles) + len(lrvFiles), Fore.RESET,
 		Fore.CYAN, len(thmFiles), Fore.RESET,
 		Fore.CYAN, len(lrvFiles), Fore.RESET
