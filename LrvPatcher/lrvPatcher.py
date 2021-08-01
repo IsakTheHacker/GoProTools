@@ -8,7 +8,7 @@ if __name__ == "__main__":
 	if (ok.lower() == "yes") or (ok.lower() == "y"):
 		for entry in os.scandir(os.path.abspath(os.getcwd())):
 			if entry.name.endswith(".LRV"):
-				os.rename(entry.path, entry.path + ".mp4")
+				os.rename(entry.path, entry.path.replace("GL", "GX").replace(".LRV", ".mp4"))
 	else:
 		print("\nLRV Patcher was canceled!")
 
